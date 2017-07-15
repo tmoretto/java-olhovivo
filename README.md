@@ -21,4 +21,4 @@ public void login(String token) {
 }
 ```
 
-Full documentation: http://www.sptrans.com.br/desenvolvedores/APIOlhoVivo/Documentacao.aspx
+Full documentation: http://bit.ly/2v4GxTv
