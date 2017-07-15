@@ -8,17 +8,17 @@ The **java-olhovivo** is a java spring boot wrapperd wrapper for the Olho Vivo A
 To authenticate to the Olho Vivo API service you must make a previous call using the http POST method informing your access token. This call will return true when authentication succeeds and false in case of errors.
 
 ```java
-import olhovivo.api.OlhoVivoApi;
-
-public class MainApp {
-
-	public static void main(String[] args) {
-		OlhoVivoApi olhovivo = new OlhoVivoApi();
+public void login(String token) {
+        
+	String url = BASE_URL + "Login/Autenticar?token=" + token;
 		
-		olhovivo.login(args[0]);
+        ResponseEntity<String> forEntity = template.postForEntity(url, HttpMethod.POST, String.class);
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Cookie",forEntity.getHeaders().get("Set-Cookie").stream().collect(Collectors.joining(";")));
+        this.entity = new HttpEntity<String>(headers);
 		
-	}
-
 }
 ```
+
 Full documentation: http://www.sptrans.com.br/desenvolvedores/APIOlhoVivo/Documentacao.aspx
